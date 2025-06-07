@@ -1,1 +1,1 @@
-# FastTechFoods.ProductsAdminService
+# FastTechFoods.ProductsManagerService
