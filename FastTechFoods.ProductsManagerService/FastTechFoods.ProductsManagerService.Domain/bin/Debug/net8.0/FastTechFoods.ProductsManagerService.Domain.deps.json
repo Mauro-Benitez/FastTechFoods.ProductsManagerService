@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FastTechFoods.ProductsManagerService.Domain/1.0.0": {
+        "runtime": {
+          "FastTechFoods.ProductsManagerService.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FastTechFoods.ProductsManagerService.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

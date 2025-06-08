@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\FastTechFoods.ProductsManagerService.API.props" />
+</Project>
