@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastTechFoods.ProductsManagerService.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,8 @@ namespace FastTechFoods.ProductsManagerService.Application.Dtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
-        public decimal Price { get; set; }
-        
-        public ProductDto(Guid id,string name, string type, decimal price)
-        {
-            Id = id;
-            Name = name;
-            Type = type;
-            Price = price;
-        }
+        public AvailabilityStatusEnum Availability { get; set; }    
+        public decimal Price { get; set; }        
+       
     }
 }

@@ -3,12 +3,6 @@ using FastTechFoods.ProductsManagerService.Application.Dtos;
 using FastTechFoods.ProductsManagerService.Application.InputModels;
 using FastTechFoods.ProductsManagerService.Domain.Entities;
 using FastTechFoods.ProductsManagerService.Domain.Repositories;
-using FastTechFoods.ProductsManagerService.Infraestructure.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FastTechFoods.ProductsManagerService.Application.Services
 {
@@ -23,11 +17,11 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
 
         public async Task<Result> CreateProductAsync(CreateOrEditContactInputModel product)
         {
-            var newProduct = new Product(product.Name, product.Type, product.Price);
+            var newProduct = new Product(product.Name, product.ProductType, product.Price, product.Description, product.Availability);
 
             var result = await _productRepository.CreateProductAsync(newProduct);
 
-            return Result<ProductDto>.Success(new ProductDto(result.Id, result.Name, result.Type, result.Price));                
+            return Result<ProductDto>.Success(new ProductDto { Id = result.Id, Name = result.Name, Price = result.Price, Availability = result.Availability});                
 
         }
 
@@ -52,12 +46,14 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
                 return Result.Failure("Product not found");
 
             product.Name = editModel.Name;
-            product.Price = editModel.Price;          
-            product.Type = editModel.Type;
+            product.ProductType = editModel.ProductType;
+            product.Price = editModel.Price;
+            product.Description = editModel.Description;
+            product.Availability = editModel.Availability;
 
             var updatedProduct = await _productRepository.UpdateProductAsync(product);
 
-            return Result<ProductDto>.Success(new ProductDto(updatedProduct.Id, updatedProduct.Name, updatedProduct.Type, updatedProduct.Price));
+            return Result<ProductDto>.Success(new ProductDto { Id = updatedProduct.Id, Name = updatedProduct.Name, Price = updatedProduct.Price, Availability = updatedProduct.Availability });
         }
     }
 }

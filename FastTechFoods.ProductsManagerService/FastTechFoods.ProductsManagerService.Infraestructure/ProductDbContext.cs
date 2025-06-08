@@ -20,8 +20,11 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure
         {
             modelBuilder.Entity<Product>().HasKey(p => p.Id);
             modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(100);
-            modelBuilder.Entity<Product>().Property(p => p.Type).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Product>().Property(p => p.ProductType).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Product>().Property(p => p.Price).IsRequired();
+            modelBuilder.Entity<Product>().Property(p => p.Description).HasMaxLength(500);
+            modelBuilder.Entity<Product>().Property(p => p.Availability).IsRequired();
+
         }
     }
     

@@ -60,40 +60,5 @@
         "StatusCode": 404
       }
     ]
-  },
-  {
-    "ContainingType": "FastTechFoods.ProductsManagerService.API.Controllers.ProductController",
-    "Method": "GetById",
-    "RelativePath": "api/Product/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "FastTechFoods.ProductsManagerService.Application.Dtos.ProductDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
   }
 ]

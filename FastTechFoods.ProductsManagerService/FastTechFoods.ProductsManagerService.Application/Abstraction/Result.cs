@@ -61,4 +61,4 @@ namespace FastTechFoods.ProductsManagerService.Application.Abstraction
         }
     }
 }
-}
+
