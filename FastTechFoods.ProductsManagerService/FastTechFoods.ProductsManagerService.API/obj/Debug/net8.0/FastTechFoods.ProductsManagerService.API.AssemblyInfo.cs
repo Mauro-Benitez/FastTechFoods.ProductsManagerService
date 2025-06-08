@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FastTechFoods.ProductsManagerService.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2581db61b9d2e735c789429e08d48dab2281a3e0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d17d36b9059c7275e4e7685df34e4f93d5b81cd1")]
 [assembly: System.Reflection.AssemblyProductAttribute("FastTechFoods.ProductsManagerService.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FastTechFoods.ProductsManagerService.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
