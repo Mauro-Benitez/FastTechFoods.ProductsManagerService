@@ -349,3 +349,7 @@ C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\Fas
 C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\obj\Debug\net8.0\FastTechFoods.ProductsManagerService.API.pdb
 C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\obj\Debug\net8.0\FastTechFoods.ProductsManagerService.API.genruntimeconfig.cache
 C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\obj\Debug\net8.0\ref\FastTechFoods.ProductsManagerService.API.dll
+C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\bin\Debug\net8.0\MassTransit.dll
+C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\bin\Debug\net8.0\MassTransit.Abstractions.dll
+C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
+C:\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService\FastTechFoods.ProductsManagerService.API\bin\Debug\net8.0\RabbitMQ.Client.dll

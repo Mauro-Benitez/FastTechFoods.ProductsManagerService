@@ -4,24 +4,28 @@ using FastTechFoods.ProductsManagerService.Application.InputModels;
 using FastTechFoods.ProductsManagerService.Domain.Entities;
 using FastTechFoods.ProductsManagerService.Domain.Repositories;
 
-namespace FastTechFoods.ProductsManagerService.Application.Services
+namespace FastTechFoods.ProductsManagerService.Application.Services.Implementation
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IRabbitMqClient _rabbitMqClient;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IRabbitMqClient rabbitMqClient)
         {
             _productRepository = productRepository;
+            _rabbitMqClient = rabbitMqClient;
         }
 
-        public async Task<Result> CreateProductAsync(CreateOrEditContactInputModel product)
+        public async Task<Result> CreateProductAsync(CreateOrEditProductInputModel product)
         {
             var newProduct = new Product(product.Name, product.ProductType, product.Price, product.Description, product.Availability);
 
             var result = await _productRepository.CreateProductAsync(newProduct);
 
-            return Result<ProductDto>.Success(new ProductDto { Id = result.Id, Name = result.Name, Price = result.Price, Availability = result.Availability});                
+            _rabbitMqClient.PublicMessageCreate(product);
+
+            return Result<ProductDto>.Success(new ProductDto { Id = result.Id, Name = result.Name, Price = result.Price, Availability = result.Availability });
 
         }
 
@@ -37,8 +41,8 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
             return Result.Success("Product deleted successfully.");
         }
 
-  
-        public async Task<Result> UpdateProductAsync(CreateOrEditContactInputModel editModel)
+
+        public async Task<Result> UpdateProductAsync(CreateOrEditProductInputModel editModel)
         {
             var product = await _productRepository.GetProductByIdAsync(editModel.Id);
 
@@ -52,6 +56,8 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
             product.Availability = editModel.Availability;
 
             var updatedProduct = await _productRepository.UpdateProductAsync(product);
+
+            _rabbitMqClient.PublicMessageUpdate(editModel);
 
             return Result<ProductDto>.Success(new ProductDto { Id = updatedProduct.Id, Name = updatedProduct.Name, Price = updatedProduct.Price, Availability = updatedProduct.Availability });
         }

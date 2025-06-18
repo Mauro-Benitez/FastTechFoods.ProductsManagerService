@@ -6,8 +6,8 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
 {
     public interface IProductService
     {
-        Task<Result> CreateProductAsync(CreateOrEditContactInputModel product);
-        Task<Result> UpdateProductAsync(CreateOrEditContactInputModel contact);
+        Task<Result> CreateProductAsync(CreateOrEditProductInputModel product);
+        Task<Result> UpdateProductAsync(CreateOrEditProductInputModel contact);
         Task<Result> DeleteProductAsync(Guid id);
     }
 }

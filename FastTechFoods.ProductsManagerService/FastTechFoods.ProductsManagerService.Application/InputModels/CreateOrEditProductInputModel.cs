@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FastTechFoods.ProductsManagerService.Application.InputModels
 {
-    public class CreateOrEditContactInputModel
+    public class CreateOrEditProductInputModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

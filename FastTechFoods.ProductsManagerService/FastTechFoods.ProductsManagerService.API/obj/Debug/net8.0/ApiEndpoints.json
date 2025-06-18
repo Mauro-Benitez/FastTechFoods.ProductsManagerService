@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "FastTechFoods.ProductsManagerService.Application.InputModels.CreateOrEditContactInputModel",
+        "Type": "FastTechFoods.ProductsManagerService.Application.InputModels.CreateOrEditProductInputModel",
         "IsRequired": true
       }
     ],
@@ -39,8 +39,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "contact",
-        "Type": "FastTechFoods.ProductsManagerService.Application.InputModels.CreateOrEditContactInputModel",
+        "Name": "product",
+        "Type": "FastTechFoods.ProductsManagerService.Application.InputModels.CreateOrEditProductInputModel",
         "IsRequired": true
       }
     ],

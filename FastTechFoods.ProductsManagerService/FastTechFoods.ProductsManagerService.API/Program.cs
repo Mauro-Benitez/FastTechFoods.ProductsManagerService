@@ -1,8 +1,13 @@
 using FastTechFoods.ProductsManagerService.Infraestructure;
 using FastTechFoods.ProductsManagerService.Application;
 using Microsoft.EntityFrameworkCore;
+using FastTechFoods.ProductsManagerService.Application.Services.Implementation;
+using FastTechFoods.ProductsManagerService.Application.Services;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
+var envHostRabbitMqServer = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
+
 
 // Add services to the container.
 
@@ -14,6 +19,21 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddApplication();
+
+//Confugure RabbitMq
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(envHostRabbitMqServer);
+    });
+});
+
+builder.Services.AddSingleton<IRabbitMqClient, RabbitMqClient>();
+
+
+
 
 var app = builder.Build();
 
