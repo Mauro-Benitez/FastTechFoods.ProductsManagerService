@@ -21,9 +21,11 @@ namespace FastTechFoods.ProductsManagerService.Application.Services.Implementati
         {
             var newProduct = new Product(product.Name, product.ProductType, product.Price, product.Description, product.Availability);
 
+            await _rabbitMqClient.PublicMessageCreate(product);
+
             var result = await _productRepository.CreateProductAsync(newProduct);
 
-            _rabbitMqClient.PublicMessageCreate(product);
+            
 
             return Result<ProductDto>.Success(new ProductDto { Id = result.Id, Name = result.Name, Price = result.Price, Availability = result.Availability });
 
@@ -55,9 +57,11 @@ namespace FastTechFoods.ProductsManagerService.Application.Services.Implementati
             product.Description = editModel.Description;
             product.Availability = editModel.Availability;
 
+            await _rabbitMqClient.PublicMessageUpdate(editModel);
+
             var updatedProduct = await _productRepository.UpdateProductAsync(product);
 
-            _rabbitMqClient.PublicMessageUpdate(editModel);
+            
 
             return Result<ProductDto>.Success(new ProductDto { Id = updatedProduct.Id, Name = updatedProduct.Name, Price = updatedProduct.Price, Availability = updatedProduct.Availability });
         }

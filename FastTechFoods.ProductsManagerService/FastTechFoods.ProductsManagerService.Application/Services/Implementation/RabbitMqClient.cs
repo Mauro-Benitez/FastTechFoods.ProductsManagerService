@@ -1,4 +1,5 @@
-﻿using FastTechFoods.ProductsManagerService.Application.InputModels;
+﻿using FastTechFoods.ProductsManagerService.Application.Events;
+using FastTechFoods.ProductsManagerService.Application.InputModels;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -23,17 +24,35 @@ namespace FastTechFoods.ProductsManagerService.Application.Services.Implementati
 
         public async Task PublicMessageCreate(CreateOrEditProductInputModel product)
         {
-            var nomeFila = _configuration.GetSection("MassTransit")["FilaCreate"] ?? "create-product-queue";
-            var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:{nomeFila}"));
-            await endpoint.Send(product);
+            var productCreatedEvent = new ProductCreatedEvent
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ProductType = product.ProductType,
+                Description = product.Description,
+                Price = product.Price,
+                Availability = product.Availability,
+                CreatedAt = DateTime.UtcNow
+            };
+            await _bus.Publish(productCreatedEvent);
+           
 
         }
 
         public async Task PublicMessageUpdate(CreateOrEditProductInputModel product)
         {
-            var nomeFila = "update-product-queue";
-            var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:{nomeFila}"));
-            await endpoint.Send(product);
+            var productUpdatedEvent = new ProductUpdatedEvent
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ProductType = product.ProductType,
+                Description = product.Description,
+                Price = product.Price,
+                Availability = product.Availability,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            await _bus.Publish(productUpdatedEvent);
         }
     }
 }
