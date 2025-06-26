@@ -1,9 +1,4 @@
 ﻿using FastTechFoods.ProductsManagerService.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FastTechFoods.ProductsManagerService.Application.Events
 {
@@ -17,5 +12,4 @@ namespace FastTechFoods.ProductsManagerService.Application.Events
         public AvailabilityStatusEnum Availability { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
-}
 }
