@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      Solution_Name: ./FastTechFoods.ProductsManagerService/FastTechFoods.ProductsManagerService.sln
-      ProjectTest_Name:  ./FastTechFoods.ProductsManagerService/OrderService.Tests.csproj
+      Solution_Name: FastTechFoods.ProductsManagerService.sln
+      ProjectTest_Name: FastTechFoods.ProductsManagerService.Tests.csproj
       IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGENAME }}
 
     steps:
