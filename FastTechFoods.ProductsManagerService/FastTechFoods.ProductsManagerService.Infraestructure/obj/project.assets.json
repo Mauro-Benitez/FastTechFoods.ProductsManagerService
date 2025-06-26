@@ -4775,23 +4775,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mauro\\.nuget\\packages\\": {},
+    "C:\\Users\\caiof\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\FastTechFoods.ProductsManagerService.Infraestructure.csproj",
+      "projectUniqueName": "C:\\Users\\caiof\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\FastTechFoods.ProductsManagerService.Infraestructure.csproj",
       "projectName": "FastTechFoods.ProductsManagerService.Infraestructure",
-      "projectPath": "C:\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\FastTechFoods.ProductsManagerService.Infraestructure.csproj",
-      "packagesPath": "C:\\Users\\Mauro\\.nuget\\packages\\",
-      "outputPath": "C:\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\obj\\",
+      "projectPath": "C:\\Users\\caiof\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\FastTechFoods.ProductsManagerService.Infraestructure.csproj",
+      "packagesPath": "C:\\Users\\caiof\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\caiof\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Infraestructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mauro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\caiof\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4800,15 +4800,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Domain\\FastTechFoods.ProductsManagerService.Domain.csproj": {
-              "projectPath": "C:\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Domain\\FastTechFoods.ProductsManagerService.Domain.csproj"
+            "C:\\Users\\caiof\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Domain\\FastTechFoods.ProductsManagerService.Domain.csproj": {
+              "projectPath": "C:\\Users\\caiof\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService\\FastTechFoods.ProductsManagerService.Domain\\FastTechFoods.ProductsManagerService.Domain.csproj"
             }
           }
         }
@@ -4821,8 +4820,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -4877,7 +4877,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
