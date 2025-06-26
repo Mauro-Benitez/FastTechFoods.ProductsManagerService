@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTechFoods.ProductsManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTechFoods.ProductsManagerService.Infraestructure", "FastTechFoods.ProductsManagerService.Infraestructure\FastTechFoods.ProductsManagerService.Infraestructure.csproj", "{9B4B6ED4-86DC-4F3C-A4A7-6D785009DD54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTechFoods.ProductsManagerService.Tests", "FastTechFoods.ProductsManagerService.Tests\FastTechFoods.ProductsManagerService.Tests.csproj", "{6F2010C0-B107-4A4D-98E7-783DF9B7CBCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9B4B6ED4-86DC-4F3C-A4A7-6D785009DD54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4B6ED4-86DC-4F3C-A4A7-6D785009DD54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4B6ED4-86DC-4F3C-A4A7-6D785009DD54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2010C0-B107-4A4D-98E7-783DF9B7CBCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2010C0-B107-4A4D-98E7-783DF9B7CBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2010C0-B107-4A4D-98E7-783DF9B7CBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2010C0-B107-4A4D-98E7-783DF9B7CBCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
