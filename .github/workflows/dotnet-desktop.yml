@@ -16,7 +16,7 @@ jobs:
 
     env:
       Solution_Name: FastTechFoods.ProductsManagerService.sln
-      ProjectTest_Name: FastTechFoods.ProductsManagerService.Tests.csproj
+      ProjectTest_Name: FastTechFoods.ProductsManagerService.Tests/FastTechFoods.ProductsManagerService.Tests.csproj
       IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGENAME }}
 
     steps:
