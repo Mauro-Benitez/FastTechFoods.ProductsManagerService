@@ -1,15 +1,12 @@
-﻿using FastTechFoods.ProductsManagerService.Application.Dtos;
-using FastTechFoods.ProductsManagerService.Application.InputModels;
+﻿using FastTechFoods.ProductsManagerService.Application.InputModels;
 using FastTechFoods.ProductsManagerService.Application.Services;
-using FastTechFoods.ProductsManagerService.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastTechFoods.ProductsManagerService.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductController : Controller
+    public class ProductController : ControllerBase
     {
 
         private readonly IProductService _productService;
