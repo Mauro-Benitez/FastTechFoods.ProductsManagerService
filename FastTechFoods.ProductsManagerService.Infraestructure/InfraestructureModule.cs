@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastTechFoods.ProductsManagerService.Application.IMessaging;
 using FastTechFoods.ProductsManagerService.Domain.Repositories;
+using FastTechFoods.ProductsManagerService.Infraestructure.Messaging;
 using FastTechFoods.ProductsManagerService.Infraestructure.Repository;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using OrderService.Contracts.Events;
 
 
 namespace FastTechFoods.ProductsManagerService.Infraestructure
@@ -18,16 +17,39 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure
         {
             services
                 .AddPersistence(configuration)
+                .AddMessaging()
                 .AddRepositories();
 
             return services;
         }
         private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DbProduct");            
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_DATABASE") ??
+                configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ProductDbContext>(options => options.UseSqlServer(connectionString));
 
+            return services;
+        }
+
+        private static IServiceCollection AddMessaging(this IServiceCollection services)
+        {
+            var envHostRabbitMqServer = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Message<CreateProductEvent>(x =>
+                    {
+                        x.SetEntityName("create-product-event");
+                    });
+
+                    cfg.Host(envHostRabbitMqServer);
+                });
+
+            });
+            services.AddScoped<ICreateProductEventPublisher, CreateProductEventPublisher>();
             return services;
         }
 

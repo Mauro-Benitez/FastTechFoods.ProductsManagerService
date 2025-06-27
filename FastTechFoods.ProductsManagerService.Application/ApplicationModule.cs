@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FastTechFoods.ProductsManagerService.Application.Services;
-using FastTechFoods.ProductsManagerService.Application.Services.Implementation;
+﻿using FastTechFoods.ProductsManagerService.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FastTechFoods.ProductsManagerService.Application
