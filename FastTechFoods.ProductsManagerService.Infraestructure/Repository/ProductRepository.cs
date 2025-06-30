@@ -48,7 +48,19 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure.Repository
                 throw new ArgumentException("Product not found");
 
             return product;
-        }            
+        }
+
+        public async Task<List<Product>> GetProduct()
+        {
+            var products = await _context.Products.ToListAsync();
+
+            if (products == null || !products.Any())
+                throw new ArgumentException("No products found");
+
+            return products;
+        }
+
+
 
         public async Task<Product> UpdateProductAsync(Product product)
         {

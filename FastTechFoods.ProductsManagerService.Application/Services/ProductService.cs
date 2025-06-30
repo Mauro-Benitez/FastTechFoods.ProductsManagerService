@@ -55,6 +55,23 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
             return Result.Success("Product deleted successfully.");
         }
 
+        public async Task<Result<List<ProductDto>>> GetProducts()
+        {
+            var products = await _productRepository.GetProduct();
+
+            if (products == null || !products.Any())
+                return Result<ProductDto>.FailureForList("No products found");
+
+            var productDtos = products.Select(product => new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Availability = product.Availability
+            }).ToList();
+
+            return Result<List<ProductDto>>.Success(productDtos);
+        }
 
         public async Task<Result> UpdateProductAsync(CreateOrEditProductInputModel editModel)
         {

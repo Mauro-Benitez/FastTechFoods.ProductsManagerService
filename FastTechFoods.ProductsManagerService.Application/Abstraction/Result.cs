@@ -59,6 +59,15 @@ namespace FastTechFoods.ProductsManagerService.Application.Abstraction
         {
             return new Result<T>(false, message, false);
         }
+        public static Result<List<T>> FailureForList(string message = "Failure.")
+        {
+            return new Result<List<T>>(false, message, data: new List<T>());
+        }
+
+        public static Result<List<T>> SuccessList(List<T> data, string message = "Success.")
+        {
+            return new Result<List<T>>(true, message, data: data);
+        }
     }
 }
 

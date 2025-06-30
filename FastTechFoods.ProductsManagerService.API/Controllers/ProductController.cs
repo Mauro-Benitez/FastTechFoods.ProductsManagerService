@@ -52,5 +52,19 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _productService.GetProducts();
+
+            if (!result.IsSuccess || !result.IsFound)
+                return NotFound(result.Message);
+
+            return Ok(result);
+        }
+
     }
 }
