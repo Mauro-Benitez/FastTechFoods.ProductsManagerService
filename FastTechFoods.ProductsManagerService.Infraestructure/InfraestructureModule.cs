@@ -45,11 +45,23 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure
                         x.SetEntityName("create-product-event");
                     });
 
+                    cfg.Message<DeleteProductEvent>(x =>
+                    {
+                        x.SetEntityName("delete-product-event");
+                    });
+
+                    cfg.Message<UpdateProductEvent>(x =>
+                    {
+                        x.SetEntityName("update-product-event");
+                    });
+
                     cfg.Host(envHostRabbitMqServer);
                 });
 
             });
             services.AddScoped<ICreateProductEventPublisher, CreateProductEventPublisher>();
+            services.AddScoped<IUpdateProductEventPublisher, UpdateProductEventPublisher>();
+            services.AddScoped<IDeleteProductEventPublisher, DeleteProductEventPublisher>();
             return services;
         }
 

@@ -12,10 +12,15 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
     {
         private readonly IProductRepository _productRepository;
         private readonly ICreateProductEventPublisher _createProductEventPublisher;
-        public ProductService(IProductRepository productRepository, ICreateProductEventPublisher createProductEventPublisher)
+        private readonly IUpdateProductEventPublisher _updateProductEventPublisher;
+        private readonly IDeleteProductEventPublisher _deleteProductEventPublisher; 
+
+        public ProductService(IProductRepository productRepository, ICreateProductEventPublisher createProductEventPublisher, IUpdateProductEventPublisher updateProductEventPublisher, IDeleteProductEventPublisher deleteProductEventPublisher)
         {
             _productRepository = productRepository;
             _createProductEventPublisher = createProductEventPublisher;
+            _updateProductEventPublisher = updateProductEventPublisher;
+            _deleteProductEventPublisher = deleteProductEventPublisher;
         }
 
         public async Task<Result> CreateProductAsync(CreateOrEditProductInputModel product)
@@ -50,7 +55,11 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
 
             await _productRepository.DeleteProductAsync(id);
 
-            //enviar mensagem de update
+            await _deleteProductEventPublisher
+                .PublishAsync(new DeleteProductEvent
+                {
+                    Id = id
+                });
 
             return Result.Success("Product deleted successfully.");
         }
@@ -90,7 +99,16 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
             var updatedProduct = await _productRepository.UpdateProductAsync(product);
             
 
-            //enviar mensagem de update
+            await _updateProductEventPublisher
+                .PublishAsync(new UpdateProductEvent
+                {
+                    Id = updatedProduct.Id,
+                    Name = updatedProduct.Name,
+                    ProductType = (OrderService.Contracts.Enums.ProductTypeEnum)updatedProduct.ProductType,
+                    Price = updatedProduct.Price,
+                    Description = updatedProduct.Description,
+                    Availability = (OrderService.Contracts.Enums.AvailabilityStatusEnum)updatedProduct.Availability
+                });
 
 
             return Result<ProductDto>.Success(new ProductDto { Id = updatedProduct.Id, Name = updatedProduct.Name, Price = updatedProduct.Price, Availability = updatedProduct.Availability });

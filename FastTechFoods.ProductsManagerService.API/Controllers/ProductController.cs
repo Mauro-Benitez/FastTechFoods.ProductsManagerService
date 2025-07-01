@@ -66,5 +66,23 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
             return Ok(result);
         }
 
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            try
+            {
+                var result = await _productService.DeleteProductAsync(id);
+                return Ok(result);
+
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }
