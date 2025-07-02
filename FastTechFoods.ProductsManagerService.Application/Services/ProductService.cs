@@ -2,6 +2,7 @@
 using FastTechFoods.ProductsManagerService.Application.Dtos;
 using FastTechFoods.ProductsManagerService.Application.IMessaging;
 using FastTechFoods.ProductsManagerService.Application.InputModels;
+using FastTechFoods.ProductsManagerService.Domain.Abstraction;
 using FastTechFoods.ProductsManagerService.Domain.Entities;
 using FastTechFoods.ProductsManagerService.Domain.Repositories;
 using OrderService.Contracts.Events;
@@ -64,14 +65,14 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
             return Result.Success("Product deleted successfully.");
         }
 
-        public async Task<Result<List<ProductDto>>> GetProducts()
+        public async Task<Result<PagedResult<ProductDto>>> GetProductAsync(int page, int quantityPerPage)
         {
-            var products = await _productRepository.GetProduct();
+            var pagedProducts = await _productRepository.GetProductAsync(page, quantityPerPage);
 
-            if (products == null || !products.Any())
-                return Result<ProductDto>.FailureForList("No products found");
+            if (pagedProducts == null || !pagedProducts.Items.Any())
+                return Result<PagedResult<ProductDto>>.Failure("No products found");
 
-            var productDtos = products.Select(product => new ProductDto
+            var productDtos = pagedProducts.Items.Select(product => new ProductDto
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -79,7 +80,15 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
                 Availability = product.Availability
             }).ToList();
 
-            return Result<List<ProductDto>>.Success(productDtos);
+            var pagedResult = new PagedResult<ProductDto>
+            {
+                Items = productDtos,
+                TotalPages = pagedProducts.TotalPages,
+                CurrentPage = pagedProducts.CurrentPage,
+                
+            };
+
+            return Result<PagedResult<ProductDto>>.Success(pagedResult);
         }
 
         public async Task<Result> UpdateProductAsync(CreateOrEditProductInputModel editModel)

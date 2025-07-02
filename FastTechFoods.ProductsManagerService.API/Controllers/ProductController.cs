@@ -56,14 +56,17 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] int page, [FromQuery] int quantityPerPage)
         {
-            var result = await _productService.GetProducts();
+            if (page <= 0 || quantityPerPage <= 0)
+                return BadRequest("The 'page' and 'quantityPerPage' parameters must be greater than zero");
+
+            var result = await _productService.GetProductAsync(page, quantityPerPage);
 
             if (!result.IsSuccess || !result.IsFound)
                 return NotFound(result.Message);
 
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpDelete]

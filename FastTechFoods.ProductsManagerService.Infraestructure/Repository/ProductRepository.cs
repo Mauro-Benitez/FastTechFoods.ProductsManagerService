@@ -1,4 +1,5 @@
-﻿using FastTechFoods.ProductsManagerService.Domain.Entities;
+﻿using FastTechFoods.ProductsManagerService.Domain.Abstraction;
+using FastTechFoods.ProductsManagerService.Domain.Entities;
 using FastTechFoods.ProductsManagerService.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,14 +51,26 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure.Repository
             return product;
         }
 
-        public async Task<List<Product>> GetProduct()
+        public async Task<PagedResult<Product>> GetProductAsync(int page, int quantityPerPage)
         {
-            var products = await _context.Products.ToListAsync();
+            var totalProducts = await _context.Products.CountAsync();
 
-            if (products == null || !products.Any())
+            if (totalProducts == 0)
                 throw new ArgumentException("No products found");
 
-            return products;
+            var totalPages = (int)Math.Ceiling(totalProducts / (double)quantityPerPage);
+
+            var products = await _context.Products
+            .Skip((page - 1) * quantityPerPage)
+            .Take(quantityPerPage)
+            .ToListAsync();
+
+            return new PagedResult<Product>
+            {
+                Items = products,
+                TotalPages = totalPages,
+                CurrentPage = page
+            };
         }
 
 
