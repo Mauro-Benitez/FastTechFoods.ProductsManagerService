@@ -27,11 +27,41 @@ namespace FastTechFoods.ProductsManagerService.Domain.Entities
         public Product() { } 
         public Product(string name, ProductTypeEnum productType, decimal price, string description, AvailabilityStatusEnum availability)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Product name cannot be empty.", nameof(name));
+
             Name = name;
             ProductType = productType;
             Price = price;
             Description = description;
             Availability = availability;
+        }
+
+        public Product(Guid id, string name, ProductTypeEnum productType, decimal price, string description, AvailabilityStatusEnum availability)
+        {
+
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Product name cannot be empty.", nameof(name));
+
+            Id = id;
+            Name = name;
+            ProductType = productType;
+            Price = price;
+            Description = description;
+            Availability = availability;
+        }
+
+        public void UpdateDetails(string name, decimal price, string description)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Product name cannot be empty.", nameof(name));
+
+            if (price <= 0)
+                throw new ArgumentException("Price must be greater than zero.", nameof(price));
+
+            Name = name;
+            Price = price;
+            Description = description;
         }
     }
 }

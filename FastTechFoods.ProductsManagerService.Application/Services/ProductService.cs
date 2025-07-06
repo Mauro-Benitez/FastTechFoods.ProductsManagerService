@@ -49,7 +49,7 @@ namespace FastTechFoods.ProductsManagerService.Application.Services
 
         public async Task<Result> DeleteProductAsync(Guid id)
         {
-            var product = _productRepository.GetProductByIdAsync(id);
+            var product = await _productRepository.GetProductByIdAsync(id);
 
             if (product is null)
                 return Result.Failure("Product not found");
