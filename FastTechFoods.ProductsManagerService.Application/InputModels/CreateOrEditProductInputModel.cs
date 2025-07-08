@@ -8,7 +8,7 @@ namespace FastTechFoods.ProductsManagerService.Application.InputModels
         public Guid Id { get; set; }
 
         [Required]
-        [RegularExpression(@"^[A-Za-zÀ-ÿ]{2,50}$", ErrorMessage = "Invalid name.")]
+        [RegularExpression(@"^[A-Za-zÀ-ÿ\s]{2,50}$", ErrorMessage = "Invalid name.")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Name must be between 2 and 50 characters.")]
         public string Name { get; set; }
 
