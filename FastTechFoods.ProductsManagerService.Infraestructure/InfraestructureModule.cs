@@ -6,8 +6,9 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using OrderService.Contracts.Events;
-
+using System.Text;
 
 namespace FastTechFoods.ProductsManagerService.Infraestructure
 {
@@ -71,6 +72,33 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure
             services.AddScoped<IProductRepository, ProductRepository>();            
             return services;
         }
+
+
+        private static IServiceCollection AddAutentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtKey = configuration["Jwt:Key"];
+
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.ASCII.GetBytes(jwtKey)
+                    )
+                };
+            });
+
+            services.AddAuthorization();
+
+            return services;
+        }
+
+
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using FastTechFoods.ProductsManagerService.Application.InputModels;
 using FastTechFoods.ProductsManagerService.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastTechFoods.ProductsManagerService.API.Controllers
@@ -20,6 +21,7 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
        
 
         [HttpPost]
+        [Authorize(Roles = "Gerente")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(CreateOrEditProductInputModel product)
@@ -37,6 +39,7 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Gerente")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update(CreateOrEditProductInputModel product)
@@ -54,6 +57,7 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Gerente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get([FromQuery] int page, [FromQuery] int quantityPerPage)
@@ -70,6 +74,7 @@ namespace FastTechFoods.ProductsManagerService.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Gerente")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(Guid id)

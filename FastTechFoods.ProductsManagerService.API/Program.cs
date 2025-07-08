@@ -37,6 +37,8 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
     db.Database.Migrate();
 }
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
