@@ -17,6 +17,7 @@ namespace FastTechFoods.ProductsManagerService.Infraestructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services
+                .AddAutentication(configuration)
                 .AddPersistence(configuration)
                 .AddMessaging()
                 .AddRepositories();
